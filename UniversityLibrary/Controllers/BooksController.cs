@@ -96,7 +96,7 @@ namespace UniversityLibrary.Controllers
 				}
 				catch (DbUpdateConcurrencyException)
 				{
-					if (!BookExists(book.ID))
+					if (!_repository.BookExists(book.ID))
 					{
 						return NotFound();
 					}
@@ -135,11 +135,6 @@ namespace UniversityLibrary.Controllers
 		{
 			await _repository.RemoveBookByIDAsync(id);
 			return RedirectToAction(nameof(Index));
-		}
-
-		private bool BookExists(int id)
-		{
-			return _repository.BookExists(id);
 		}
 	}
 }
