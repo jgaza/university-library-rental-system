@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<UniversityLibrary.Models.Book>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Books";
 }
 
 <h1>Index</h1>
@@ -37,11 +37,24 @@
                 @Html.DisplayFor(modelItem => item.Isbn)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Authors)
+                @if (null != item.Authors){
+                    @foreach (var author in item.Authors)
+                    {
+                            @author.LastName @:,&nbsp @author.FirstName <br/>
+                    }
+                }
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Publisher)
-            </td>
+                @if (null != item.Publisher)
+                {
+                    @Html.DisplayFor(modelItem => item.Publisher.Name)
+
+                }
+                else
+                {
+                    @Html.Display("N/A")
+                }
+                </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.ID">Details</a> |

@@ -27,13 +27,26 @@
             @Html.DisplayNameFor(model => model.Authors)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Authors)
+            @if (null != Model.Authors)
+            {
+                @foreach (var author in Model.Authors)
+                {
+                    @author.LastName @:,&nbsp @author.FirstName <br />
+                }
+            }
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Publisher)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Publisher)
+            @if (null != Model.Publisher)
+            {
+                @Model.Publisher.Name
+            }
+            else
+            {
+                @Html.Display("N/A")
+            }
         </dd>
     </dl>
     
