@@ -16,6 +16,7 @@ namespace UniversityLibrary.Models
         [Display(Name = "Author(s)")]
         public ICollection<Author>? Authors { get; set; }
 
-        public string? Publisher { get; set; }
+        public int? PublisherID { get; set; }
+        public Publisher? Publisher { get; set; }
     }
 }

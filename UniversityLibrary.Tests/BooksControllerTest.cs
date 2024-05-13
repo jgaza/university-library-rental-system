@@ -46,7 +46,7 @@ public class BooksControllerTest
                     FirstName = "John",
                     LastName = "Smith"
                 }],
-                Publisher = "Test Publisher 1"
+                Publisher = new(){ Name = "Publisher 1"}
             },
             new()
             {
@@ -58,7 +58,7 @@ public class BooksControllerTest
                     FirstName = "Jane",
                     LastName = "Smith"
                 }],
-                Publisher = "Test Publisher 2"
+                Publisher = new(){ Name = "Publisher 2"}
             }
         };
 

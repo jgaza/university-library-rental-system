@@ -7,5 +7,6 @@ namespace UniversityLibrary.Data
     {
         public DbSet<Book> Book { get; set; } = default!;
         public DbSet<UniversityLibrary.Models.Author> Author { get; set; } = default!;
+        public DbSet<UniversityLibrary.Models.Publisher> Publisher { get; set; } = default!;
     }
 }

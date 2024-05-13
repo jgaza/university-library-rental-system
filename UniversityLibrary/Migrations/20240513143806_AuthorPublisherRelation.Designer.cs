@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using UniversityLibrary.Data;
 
@@ -10,9 +11,11 @@ using UniversityLibrary.Data;
 namespace UniversityLibrary.Migrations
 {
     [DbContext(typeof(UniversityLibraryContext))]
-    partial class UniversityLibraryContextModelSnapshot : ModelSnapshot
+    [Migration("20240513143806_AuthorPublisherRelation")]
+    partial class AuthorPublisherRelation
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.4");
@@ -29,7 +32,7 @@ namespace UniversityLibrary.Migrations
 
                     b.HasIndex("BooksID");
 
-                    b.ToTable("AuthorBook", (string)null);
+                    b.ToTable("AuthorBook");
                 });
 
             modelBuilder.Entity("UniversityLibrary.Models.Author", b =>
@@ -48,7 +51,7 @@ namespace UniversityLibrary.Migrations
 
                     b.HasKey("ID");
 
-                    b.ToTable("Author", (string)null);
+                    b.ToTable("Author");
                 });
 
             modelBuilder.Entity("UniversityLibrary.Models.Book", b =>
@@ -71,7 +74,7 @@ namespace UniversityLibrary.Migrations
 
                     b.HasIndex("PublisherID");
 
-                    b.ToTable("Book", (string)null);
+                    b.ToTable("Book");
                 });
 
             modelBuilder.Entity("UniversityLibrary.Models.Publisher", b =>
@@ -86,7 +89,7 @@ namespace UniversityLibrary.Migrations
 
                     b.HasKey("ID");
 
-                    b.ToTable("Publisher", (string)null);
+                    b.ToTable("Publisher");
                 });
 
             modelBuilder.Entity("AuthorBook", b =>

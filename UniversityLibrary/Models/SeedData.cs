@@ -39,34 +39,46 @@ public static class SeedData
 
         context.Author.AddRange(johnDoe, janeDoe, johnSmith);
 
+        Publisher publisher = new()
+        {
+            Name = "Publisher 1"
+        };
+
+        Publisher publisher2 = new()
+        {
+            Name = "Publisher 2"
+        };
+
+        context.Publisher.AddRange(publisher, publisher2);
+
         context.Book.AddRange(
             new Book
             {
                 Title = "Some Title",
                 Isbn = "1234",
                 Authors = [johnDoe],
-                Publisher = "Some Publisher"
+                Publisher = publisher
             },
             new Book
             {
                 Title = "Some Other Title",
                 Isbn = "5678",
                 Authors = [janeDoe],
-                Publisher = "Some Other Publisher"
+                Publisher = publisher
             },
             new Book
             {
                 Title = "Yet Another Title",
                 Isbn = "1357",
                 Authors = [johnDoe, johnSmith],
-                Publisher = "Surprise, The First Publisher"
+                Publisher = publisher2
             },
             new Book
             {
                 Title = "One Last Title",
                 Isbn = "2468",
                 Authors = [johnDoe, janeDoe],
-                Publisher = "Yet Another Publisher"
+                Publisher = publisher
             }
         );
         context.SaveChanges();
