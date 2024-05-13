@@ -12,7 +12,7 @@ public class BooksControllerTest
 	public async Task Index_ReturnsAViewResult()
 	{
 		var repositoryMock = new Mock<IBooksRepository>();
-		var controller = new BooksController(repositoryMock.Object);
+		var controller = new BooksController(repositoryMock.Object, null);
 
 		var result = await controller.Index();
 
@@ -24,7 +24,7 @@ public class BooksControllerTest
 	{
 		var repositoryMock = new Mock<IBooksRepository>();
 		repositoryMock.Setup(repo => repo.GetAllBooksAsync()).ReturnsAsync(InstantiateTestBooks());
-		var controller = new BooksController(repositoryMock.Object);
+		var controller = new BooksController(repositoryMock.Object, null);
 
 		var result = await controller.Index() as ViewResult;
 		var model = result?.ViewData?.Model as IEnumerable<Book>;
@@ -32,7 +32,7 @@ public class BooksControllerTest
 		Assert.Equal(InstantiateTestBooks().Count, model?.Count());
 	}
 
-	private List<Book> InstantiateTestBooks()
+	private static List<Book> InstantiateTestBooks()
 	{
 		var books = new List<Book>
 		{
