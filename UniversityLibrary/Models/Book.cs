@@ -12,7 +12,9 @@ namespace UniversityLibrary.Models
         [Display(Name = "ISBN")]
         public string? Isbn { get; set; }
 
-        public int AuthorID { get; set; }
+        [Required]
+        [Display(Name = "Author(s)")]
+        public ICollection<Author>? Authors { get; set; }
 
         public string? Publisher { get; set; }
     }

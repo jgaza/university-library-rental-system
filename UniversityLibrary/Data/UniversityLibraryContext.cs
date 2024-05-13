@@ -3,13 +3,9 @@ using UniversityLibrary.Models;
 
 namespace UniversityLibrary.Data
 {
-	public class UniversityLibraryContext : DbContext
-	{
-		public UniversityLibraryContext(DbContextOptions<UniversityLibraryContext> options)
-			: base(options)
-		{
-		}
-
-		public DbSet<Book> Book { get; set; } = default!;
-	}
+    public class UniversityLibraryContext(DbContextOptions<UniversityLibraryContext> options) : DbContext(options)
+    {
+        public DbSet<Book> Book { get; set; } = default!;
+        public DbSet<UniversityLibrary.Models.Author> Author { get; set; } = default!;
+    }
 }

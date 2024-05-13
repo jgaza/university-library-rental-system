@@ -1,4 +1,4 @@
-﻿@model IEnumerable<UniversityLibrary.Models.Book>
+﻿@model IEnumerable<UniversityLibrary.Models.Author>
 
 @{
     ViewData["Title"] = "Index";
@@ -13,16 +13,10 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Title)
+                @Html.DisplayNameFor(model => model.FirstName)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Isbn)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Authors)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Publisher)
+                @Html.DisplayNameFor(model => model.LastName)
             </th>
             <th></th>
         </tr>
@@ -31,16 +25,10 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Title)
+                @Html.DisplayFor(modelItem => item.FirstName)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Isbn)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Authors)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Publisher)
+                @Html.DisplayFor(modelItem => item.LastName)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
