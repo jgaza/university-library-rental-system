@@ -18,5 +18,7 @@ namespace UniversityLibrary.Models
 
         public int? PublisherID { get; set; }
         public Publisher? Publisher { get; set; }
+        public BookLoan? BookLoan { get; set; }
+        public int BookLoanID { get; set; }
     }
 }

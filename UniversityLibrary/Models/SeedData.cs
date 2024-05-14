@@ -14,10 +14,44 @@ public static class SeedData
             serviceProvider.GetRequiredService<
                 DbContextOptions<UniversityLibraryContext>>());
         // Look for any Books.
-        if (context.Book.Any())
+        if (context.BookLoan.Any())
         {
             return;   // DB has been seeded
         }
+
+        Address commonStreet = new()
+        {
+            Street = "Common Street",
+            HouseNumber = 123,
+            Postcode = 55555,
+            City = "Munich"
+        };
+
+        Address laufendeStrasse = new()
+        {
+            Street = "Laufende Strasse",
+            HouseNumber = 456,
+            Postcode = 12345,
+            City = "Munich"
+        };
+
+        context.Address.AddRange(commonStreet, laufendeStrasse);
+
+        Student albertEinstein = new()
+        {
+            FirstName = "Albert",
+            LastName = "Einstein",
+            Address = laufendeStrasse
+        };
+
+        Student napoleonBonaparte = new()
+        {
+            FirstName = "Napoleon",
+            LastName = "Bonaparte",
+            Address = commonStreet
+        };
+
+        context.Student.AddRange(albertEinstein, napoleonBonaparte);
 
         Author johnDoe = new()
         {
@@ -51,36 +85,57 @@ public static class SeedData
 
         context.Publisher.AddRange(publisher, publisher2);
 
-        context.Book.AddRange(
-            new Book
-            {
-                Title = "Some Title",
-                Isbn = "1234",
-                Authors = [johnDoe],
-                Publisher = publisher
-            },
-            new Book
-            {
-                Title = "Some Other Title",
-                Isbn = "5678",
-                Authors = [janeDoe],
-                Publisher = publisher
-            },
-            new Book
-            {
-                Title = "Yet Another Title",
-                Isbn = "1357",
-                Authors = [johnDoe, johnSmith],
-                Publisher = publisher2
-            },
-            new Book
-            {
-                Title = "One Last Title",
-                Isbn = "2468",
-                Authors = [johnDoe, janeDoe],
-                Publisher = publisher
-            }
-        );
+        Book someTitle = new()
+        {
+            Title = "Some Title",
+            Isbn = "1234",
+            Authors = [johnDoe],
+            Publisher = publisher
+        };
+        Book someOtherTitle = new()
+        {
+            Title = "Some Other Title",
+            Isbn = "5678",
+            Authors = [janeDoe],
+            Publisher = publisher
+        };
+
+        Book yetAnotherTitle = new()
+        {
+            Title = "Yet Another Title",
+            Isbn = "1357",
+            Authors = [johnDoe, johnSmith],
+            Publisher = publisher2
+        };
+
+        Book oneLastTitle = new()
+        {
+            Title = "One Last Title",
+            Isbn = "2468",
+            Authors = [johnDoe, janeDoe],
+            Publisher = publisher
+        };
+
+        context.Book.AddRange(someTitle, someOtherTitle, yetAnotherTitle, oneLastTitle);
+
+        BookLoan albertLoan = new()
+        {
+            Student = albertEinstein,
+            Books = [someTitle, someOtherTitle],
+            StartDate = DateOnly.MinValue,
+            EndDate = DateOnly.MaxValue
+        };
+
+        BookLoan napoleonLoan = new()
+        {
+            Student = napoleonBonaparte,
+            Books = [yetAnotherTitle, oneLastTitle],
+            StartDate = DateOnly.MinValue,
+            EndDate = DateOnly.MaxValue
+        };
+
+        context.BookLoan.AddRange(albertLoan, napoleonLoan);
+
         context.SaveChanges();
     }
 }
